@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SiswaController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,9 +51,21 @@ Route::get('coba', function () {
 
 Route::get('tabel', function () {
     $data = ['meja', 'kursi', 'pensil', 'bolpoin', 'lampu'];
+    // return view('table', ['data' => $data]);
     return view('table', compact('data'));
 });
 
 Route::get('template', function () {
     return view('templatekasper');
 });
+
+// Route::get('siswa', [SiswaController::class, 'index']);
+// Route::get('tambahsiswa', [SiswaController::class, 'create']);
+// Route::get('tambahsiswa', [SiswaController::class, 'show']);
+// Route::get('tambahsiswa', [SiswaController::class, 'create']);
+
+Route::resource('siswa', SiswaController::class)->middleware(['auth', 'admin']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
