@@ -5,15 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Model
+class Upload extends Model
 {
     use HasFactory;
 
-    protected $table = 'siswa';
+    protected $table = 'upload';
     protected $guarded = ['id'];
-
-    function sekolah() {
-        return $this->belongsTo(Sekolah::class);
-    }
 }
- 
